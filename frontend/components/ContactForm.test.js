@@ -76,11 +76,20 @@ test('renders ONE error message if user enters a valid first name and last name 
 
   // assert
   expect(errMessages).toHaveLength(1);
-
 });
 
 test('renders "email must be a valid email address" if an invalid email is entered', async () => {
+  // arrange
+  render(<ContactForm />);
 
+  // act
+  const elemEmail = screen.getByLabelText(/Email/i);
+  userEvent.type(elemEmail, "qrstuvwxyz");
+
+  const errMessages = await screen.findByText(/email must be a valid email address/i); // gets ALL error message
+  console.log(errMessages);
+  // assert
+  expect(errMessages).toBeInTheDocument();
 });
 
 test('renders "lastName is a required field" if an last name is not entered and the submit button is clicked', async () => {
