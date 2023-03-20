@@ -18,6 +18,17 @@ test('renders without errors', () => {
 });
 
 test('renders the contact form header', () => {
+    // arrange
+    render(<ContactForm />);
+
+    // act
+    const elemHeader = screen.getByText(/contact form/i);
+  
+    // assert
+    expect(elemHeader).toBeTruthy();
+    expect(elemHeader).toBeInTheDocument();
+    expect(elemHeader).toBeVisible();
+    expect(elemHeader).toHaveTextContent(/contact form/i);
 
 });
 
