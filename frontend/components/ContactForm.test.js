@@ -87,13 +87,23 @@ test('renders "email must be a valid email address" if an invalid email is enter
   userEvent.type(elemEmail, "qrstuvwxyz");
 
   const errMessages = await screen.findByText(/email must be a valid email address/i); // gets ALL error message
-  console.log(errMessages);
+  
   // assert
   expect(errMessages).toBeInTheDocument();
 });
 
 test('renders "lastName is a required field" if an last name is not entered and the submit button is clicked', async () => {
+  // arrange
+  render(<ContactForm />);
 
+  // act
+  const elemButton = screen.getByRole("button");
+  userEvent.click(elemButton);
+
+  const errMessages = await screen.findByText(/lastName is a required field/i); // gets ALL error message
+
+  // assert
+  expect(errMessages).toBeInTheDocument();
 });
 
 test('renders all firstName, lastName and email text when submitted. Does NOT render message if message is not submitted.', async () => {
