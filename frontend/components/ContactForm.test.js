@@ -5,7 +5,16 @@ import userEvent from '@testing-library/user-event';
 import ContactForm from './ContactForm';
 
 test('renders without errors', () => {
+  // arrange
+  render(<ContactForm />);
 
+  // act
+  const formContact = screen.getByText(/contact form/i);
+
+  // assert
+  expect(formContact).toBeTruthy();
+  expect(formContact).toBeInTheDocument();
+  expect(formContact).toBeVisible();
 });
 
 test('renders the contact form header', () => {
